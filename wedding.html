@@ -477,6 +477,202 @@
       font-family: var(--ff-serif);
     }
 
+    /* ─── GALLERY ───────────────────────────────────────────── */
+    #gallery {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    #gallery .container { text-align: center; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 56px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+      background: var(--accent-light);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.3s ease;
+      filter: saturate(0.92);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: saturate(1);
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26,26,26,0);
+      transition: background 0.3s ease;
+    }
+    .gallery-item:hover::after { background: rgba(201,168,76,0.10); }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,14,0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 86vh;
+      object-fit: contain;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox-close, .lightbox-nav {
+      position: absolute;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.85);
+      cursor: pointer;
+      font-family: var(--ff-serif);
+      transition: color 0.2s;
+      user-select: none;
+    }
+    .lightbox-close { top: 24px; right: 32px; font-size: 40px; line-height: 1; }
+    .lightbox-nav { top: 50%; transform: translateY(-50%); font-size: 56px; padding: 0 20px; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+    .lightbox-close:hover, .lightbox-nav:hover { color: var(--accent); }
+
+    /* ─── MAP ───────────────────────────────────────────────── */
+    #map {
+      background: var(--accent-light);
+      padding: 100px 0;
+    }
+    #map .container { text-align: center; }
+    .map-frame {
+      margin-top: 48px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+      line-height: 0;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+    }
+    .map-address {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .map-address strong {
+      display: block;
+      font-family: var(--ff-serif);
+      font-size: 18px;
+      color: var(--text);
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    /* ─── WISHES / GUESTBOOK ────────────────────────────────── */
+    #wishes {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    #wishes .container { text-align: center; }
+    .wish-form {
+      max-width: 520px;
+      margin: 48px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wish-form input,
+    .wish-form textarea {
+      width: 100%;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-family: var(--ff-sans);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .wish-form input:focus,
+    .wish-form textarea:focus { border-color: var(--accent); }
+    .wish-form textarea { min-height: 96px; }
+    .btn-wish {
+      align-self: center;
+      padding: 14px 36px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--ff-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-wish:hover { opacity: 0.85; }
+    .wish-list {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+    .wish-card {
+      border: 1px solid var(--border);
+      padding: 24px;
+      background: var(--bg);
+      position: relative;
+    }
+    .wish-card .quote {
+      font-family: var(--ff-serif);
+      font-size: 40px;
+      color: var(--accent);
+      line-height: 0.5;
+      opacity: 0.4;
+    }
+    .wish-msg {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.7;
+      margin: 12px 0 16px;
+    }
+    .wish-author {
+      font-family: var(--ff-serif);
+      font-size: 16px;
+      color: var(--accent);
+    }
+    .wish-del {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--border);
+      font-size: 18px;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+    .wish-del:hover { color: #c0392b; }
+
     /* ─── [6] FOOTER ────────────────────────────────────────── */
     footer {
       background: var(--bg-dark);
@@ -517,6 +713,10 @@
       .rsvp-form { flex-direction: column; align-items: stretch; }
       .rsvp-input { max-width: 100%; }
       .btn-attend, .btn-decline { width: 100%; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .wish-list { grid-template-columns: 1fr; }
+      .map-frame iframe { height: 320px; }
+      .lightbox-nav { font-size: 40px; padding: 0 10px; }
     }
   </style>
 </head>
@@ -586,6 +786,37 @@
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
+<!-- GALLERY — Album ảnh cưới                                   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label reveal">Khoảnh Khắc</p>
+    <h2 class="section-title reveal">Album Ảnh Cưới</h2>
+    <span class="gold-line reveal"></span>
+
+    <!-- EDIT: Thay các link ảnh placeholder bên dưới bằng ảnh cưới thật của bạn.
+         Giữ nguyên class & cấu trúc; cập nhật cả thuộc tính data-full nếu muốn ảnh phóng to khác. -->
+    <div class="gallery-grid reveal" id="gallery-grid">
+      <div class="gallery-item"><img src="https://picsum.photos/id/1062/600/800" alt="Ảnh cưới 1" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1059/600/800" alt="Ảnh cưới 2" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1080/600/800" alt="Ảnh cưới 3" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1027/600/800" alt="Ảnh cưới 4" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1025/600/800" alt="Ảnh cưới 5" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1074/600/800" alt="Ảnh cưới 6" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lb-close" aria-label="Đóng">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Ảnh trước">&lsaquo;</button>
+  <img id="lb-img" src="" alt="Ảnh phóng to" />
+  <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Ảnh sau">&rsaquo;</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
 <!-- [3] EVENT DETAILS                                          -->
 <!-- ══════════════════════════════════════════════════════════ -->
 <section id="details">
@@ -641,6 +872,36 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MAP — Bản đồ dẫn đường                                     -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="map">
+  <div class="container">
+    <p class="section-label reveal">Dẫn Đường</p>
+    <h2 class="section-title reveal">Địa Điểm Tổ Chức</h2>
+    <span class="gold-line reveal"></span>
+
+    <!-- EDIT: Đổi địa chỉ trong link bên dưới.
+         Cách lấy: mở Google Maps → tìm địa điểm → đổi phần "q=" thành địa chỉ/tên nơi tổ chức.
+         Có thể thay nguyên src bằng mã nhúng (Embed a map) từ Google Maps để định vị chính xác hơn. -->
+    <div class="map-frame reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Trung+tâm+Hội+nghị+tiệc+cưới,+Hồ+Chí+Minh&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Bản đồ địa điểm tổ chức tiệc cưới">
+      </iframe>
+    </div>
+
+    <!-- EDIT: Đổi tên & địa chỉ địa điểm -->
+    <p class="map-address reveal">
+      <strong>Trung tâm Hội nghị ABC</strong>
+      123 Đường XYZ, Phường 1, Quận 3, TP. Hồ Chí Minh
+    </p>
   </div>
 </section>
 
@@ -714,6 +975,42 @@
     </div>
 
     <div class="guest-list-wrap reveal" id="guest-list-wrap">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- WISHES — Lời chúc / Sổ lưu bút                             -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="wishes">
+  <div class="container">
+    <p class="section-label reveal">Gửi Gắm</p>
+    <h2 class="section-title reveal">Lời Chúc Phúc</h2>
+    <span class="gold-line reveal"></span>
+    <p class="reveal" style="color:var(--muted);font-size:14px;margin-top:-4px;">
+      Để lại đôi lời chúc mừng dành cho đôi uyên ương
+    </p>
+
+    <form class="wish-form reveal" id="wish-form" onsubmit="return submitWish(event)">
+      <input
+        type="text"
+        id="wish-name"
+        placeholder="Tên của bạn"
+        maxlength="60"
+        autocomplete="name"
+        aria-label="Tên của bạn"
+      />
+      <textarea
+        id="wish-msg"
+        placeholder="Lời chúc của bạn dành cho cô dâu &amp; chú rể…"
+        maxlength="300"
+        aria-label="Lời chúc"></textarea>
+      <button type="submit" class="btn-wish">Gửi Lời Chúc</button>
+    </form>
+
+    <div class="wish-list reveal" id="wish-list">
       <!-- Rendered by JS -->
     </div>
   </div>
@@ -892,6 +1189,101 @@
   document.getElementById('guest-name').addEventListener('keydown', e => {
     if (e.key === 'Enter') rsvp('attend');
   });
+
+
+  /* ── Gallery lightbox ─────────────────────────────────────── */
+  const galleryImgs = Array.from(document.querySelectorAll('#gallery-grid img'));
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  let lbIndex = 0;
+
+  function openLightbox(i) {
+    lbIndex = i;
+    lbImg.src = galleryImgs[i].src;
+    lbImg.alt = galleryImgs[i].alt;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  function stepLightbox(dir) {
+    lbIndex = (lbIndex + dir + galleryImgs.length) % galleryImgs.length;
+    lbImg.src = galleryImgs[lbIndex].src;
+    lbImg.alt = galleryImgs[lbIndex].alt;
+  }
+
+  galleryImgs.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); stepLightbox(-1); });
+  document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); stepLightbox(1); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+
+
+  /* ── Wishes / Guestbook ───────────────────────────────────── */
+  const WISH_KEY = 'wedding_wishes';
+
+  function loadWishes() {
+    try { return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveWishes(w) { localStorage.setItem(WISH_KEY, JSON.stringify(w)); }
+
+  function submitWish(e) {
+    e.preventDefault();
+    const nameEl = document.getElementById('wish-name');
+    const msgEl  = document.getElementById('wish-msg');
+    const name = nameEl.value.trim();
+    const msg  = msgEl.value.trim();
+    if (!name || !msg) {
+      showToast('Vui lòng nhập tên và lời chúc.');
+      (!name ? nameEl : msgEl).focus();
+      return false;
+    }
+    const wishes = loadWishes();
+    wishes.unshift({ name, msg, ts: Date.now() });
+    saveWishes(wishes);
+    nameEl.value = '';
+    msgEl.value = '';
+    showToast('Cảm ơn lời chúc của bạn! 💛');
+    renderWishes();
+    return false;
+  }
+
+  function deleteWish(ts) {
+    saveWishes(loadWishes().filter(w => w.ts !== ts));
+    renderWishes();
+  }
+
+  function renderWishes() {
+    const wishes = loadWishes();
+    const list = document.getElementById('wish-list');
+    if (!wishes.length) {
+      list.style.display = 'block';
+      list.innerHTML = '<p class="empty-state">Hãy là người đầu tiên gửi lời chúc 💌</p>';
+      return;
+    }
+    list.style.display = 'grid';
+    list.innerHTML = wishes.map(w => `
+      <div class="wish-card">
+        <button class="wish-del" onclick="deleteWish(${w.ts})" aria-label="Xóa lời chúc">×</button>
+        <div class="quote" aria-hidden="true">&ldquo;</div>
+        <p class="wish-msg">${escapeHtml(w.msg)}</p>
+        <p class="wish-author">— ${escapeHtml(w.name)}</p>
+      </div>
+    `).join('');
+  }
+
+  renderWishes();
 </script>
 
 </body>
